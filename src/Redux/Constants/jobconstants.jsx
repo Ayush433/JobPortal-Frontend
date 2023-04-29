@@ -1,0 +1,4 @@
+export const JOB_LOAD_FAIL = "JOB_LOAD-FAIL";
+export const JOB_LOAD_SUCCESS = "JOB_LOAD-SUCCESS";
+export const JOB_LOAD_REQUEST = "JOB_LOAD-REQUEST";
+export const JOB_LOAD_RESET = "JOB_LOAD-RESET";
