@@ -13,7 +13,7 @@ const Footer = () => {
       <div className="absolute bottom-0 text-white flex justify-center flex-col items-center inset-x-0 top-[50%] ">
         <h1>Develop By</h1>
         <h1>Ayush Adhikari</h1>
-        <h2 className="text-red-500">All Right Reserved</h2>
+        <h2 className="text-red-500">All Right Reserved! 2023</h2>
       </div>
     </div>
   );

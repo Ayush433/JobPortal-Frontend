@@ -3,11 +3,13 @@ import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { loadjobReducer } from "./Reducer/jobReducer";
+import { loadJobTypeReducer } from "./Reducer/jobTypeReducer";
 
 //combine reducers
 
 const reducer = combineReducers({
   loadJobs: loadjobReducer,
+  jobTypeAll: loadJobTypeReducer,
 });
 
 //initial state

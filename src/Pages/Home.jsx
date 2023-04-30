@@ -4,13 +4,25 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { jobLoadAction } from "../Redux/actions/jobAction";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
-import { Pagination, Stack } from "@mui/material";
+import { Link, useParams } from "react-router-dom";
+import {
+  Box,
+  Card,
+  ListItemIcon,
+  MenuItem,
+  MenuList,
+  Pagination,
+  Stack,
+  Typography,
+} from "@mui/material";
+import SelectComponent from "../Components/SelectComponent";
+import { jobTypeLoadAction } from "../Redux/actions/jobTypeAction";
 
 const Home = () => {
   const { jobs, setUniqueLocation, pages, loading } = useSelector(
     (state) => state.loadJobs
   );
+
   const dispatch = useDispatch();
 
   const { keyword, location } = useParams;
@@ -19,7 +31,24 @@ const Home = () => {
   useEffect(() => {
     dispatch(jobLoadAction(page, keyword, cat, location));
   }, [page, keyword, cat, location]);
-
+  useEffect(() => {
+    dispatch(jobTypeLoadAction());
+  }, []);
+  if (loading) {
+    return (
+      <div className="h-[600px]">
+        <lottie-player
+          src="https://assets6.lottiefiles.com/packages/lf20_octtoqca.json"
+          background="transparent"
+          loop
+          autoplay
+        ></lottie-player>
+      </div>
+    );
+  }
+  const handleChangeCategory = (e) => {
+    setCat(e.target.value);
+  };
   return (
     <div>
       <Header />
@@ -31,10 +60,15 @@ const Home = () => {
           <h5 className="mb-2 text-[20px] font-bold tracking-tight text-blue-700 dark:text-white">
             Filter By Category
           </h5>
+          <SelectComponent
+            handleChangeCategory={handleChangeCategory}
+            cat={cat}
+          />
         </a>
       </div>
       {/* jobs hmro backend aba ako object sanga exact match grna parxa backend mah jobs vani array vitrw object haru xan jasma jobs array ko title auta object ho  */}
       {/* <div>{jobs && jobs.map((job) => <h1>{job.title}</h1>)}</div>  */}
+      {}
       <div className="grid grid-rows-3 gap-4">
         {jobs &&
           jobs.map((job) => {
