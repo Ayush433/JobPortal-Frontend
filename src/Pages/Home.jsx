@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { jobLoadAction } from "../Redux/actions/jobAction";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import { Pagination, Stack } from "@mui/material";
 
 const Home = () => {
   const { jobs, setUniqueLocation, pages, loading } = useSelector(
@@ -71,7 +72,9 @@ const Home = () => {
                 <path d="M9 11H3v5a2 2 0 002 2h4v-7zM11 18h4a2 2 0 002-2v-5h-6v7z"></path> */}
                 </svg>
 
-                <i class="fa-solid fa-location-dot text-blue-700 text-2xl"></i>
+                <i class="fa-solid fa-location-dot text-blue-700 text-[15px]">
+                  {job.location}
+                </i>
 
                 <div className="">
                   <a href="#">
@@ -82,7 +85,6 @@ const Home = () => {
                   <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">
                     {job.description}
                   </p>
-
                   <button
                     type="button"
                     class="text-white mt-4 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
@@ -94,6 +96,17 @@ const Home = () => {
               </div>
             );
           })}
+        <div className="ml-[700px] text-xl py-2 px-4 rounded-lg ">
+          <Stack spacing={2}>
+            <Pagination
+              page={page}
+              count={pages === 0 ? 1 : pages}
+              onChange={(event, value) => {
+                setPage(value);
+              }}
+            />
+          </Stack>
+        </div>
       </div>
     </div>
   );

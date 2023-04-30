@@ -7,6 +7,7 @@ import Home from "./Pages/Home";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from "./Components/Navbar";
 import Header from "./Components/Header";
+import Footer from "./Components/Footer";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -21,6 +22,7 @@ function App() {
           <Route path="header" element={<Header />} />
         </Routes>
       </BrowserRouter>
+      <Footer />
       {/* <h1 className="text-3xl font-bold underline">Hello world!</h1>
       <Home />
       <NotFound /> */}
