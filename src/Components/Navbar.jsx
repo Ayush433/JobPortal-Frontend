@@ -1,7 +1,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useFormik } from "formik";
 import { Dropdown } from "flowbite";
 import { Avatar } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [theme, setTheme] = useState(
@@ -11,7 +13,21 @@ const Navbar = () => {
   const handleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };
-
+  const navigate = useNavigate();
+  const formik = useFormik({
+    initialValues: {
+      search: "",
+    },
+    onSubmit: (values, actions) => {
+      const { search } = values;
+      if (search.trim()) {
+        navigate(`/search/${search}`);
+      } else {
+        navigate("/");
+      }
+      actions.resetForm();
+    },
+  });
   useEffect(() => {
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
@@ -20,6 +36,7 @@ const Navbar = () => {
     }
     localStorage.setItem("mernTheme", theme);
   }, [theme]);
+
   return (
     <div>
       <nav className="bg-blue-700 border-gray-200 dark:bg-gray-900">
@@ -57,6 +74,7 @@ const Navbar = () => {
               </svg>
               <span className="sr-only">Search</span>
             </button>
+
             <div className="relative hidden md:block">
               <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                 <svg
@@ -74,13 +92,20 @@ const Navbar = () => {
                 </svg>
                 <span className="sr-only">Search icon</span>
               </div>
-              <input
-                type="text"
-                id="search-navbar"
-                className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Search..."
-              />
+
+              <form onSubmit={formik.handleSubmit}>
+                <input
+                  type="search"
+                  onChange={formik.handleChange}
+                  values={formik.values.searchText}
+                  id="searchText"
+                  className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Search..."
+                  name="search"
+                />
+              </form>
             </div>
+
             <button
               data-collapse-toggle="navbar-search"
               type="button"

@@ -14,15 +14,17 @@ function App() {
 
   return (
     <>
-      <Navbar />
       <BrowserRouter>
+        <Navbar />
+        {/* <Header /> */}
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/search/location/:location" element={<Home />} />
+          <Route path="/search/:keyword" element={<Home />} />
           <Route path="*" element={<NotFound />} />
-          <Route path="header" element={<Header />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
-      <Footer />
       {/* <h1 className="text-3xl font-bold underline">Hello world!</h1>
       <Home />
       <NotFound /> */}

@@ -73,9 +73,9 @@ const Home = () => {
         {jobs &&
           jobs.map((job) => {
             return (
-              <div class=" w-[700px] ml-[500px] p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+              <div className=" w-[700px] ml-[500px] p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <svg
-                  class="w-10 h-10 mb-2 text-gray-500 dark:text-gray-400"
+                  className="w-10 h-10 mb-2 text-gray-500 dark:text-gray-400"
                   aria-hidden="true"
                   fill="currentColor"
                   viewBox="0 0 20 20"
@@ -106,24 +106,33 @@ const Home = () => {
                 <path d="M9 11H3v5a2 2 0 002 2h4v-7zM11 18h4a2 2 0 002-2v-5h-6v7z"></path> */}
                 </svg>
 
-                <i class="fa-solid fa-location-dot text-blue-700 text-[15px]">
+                <i
+                  className="fa-solid fa-location-dot text-blue-700 text-[15px]"
+                  key={job.location}
+                >
                   {job.location}
                 </i>
 
                 <div className="">
                   <a href="#">
-                    <h5 class="mb-2 text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
+                    <h5
+                      className="mb-2 text-xl font-semibold tracking-tight text-gray-900 dark:text-white"
+                      key={job.title}
+                    >
                       {job.title}
                     </h5>
                   </a>
-                  <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">
+                  <p
+                    className="mb-3 font-normal text-gray-500 dark:text-gray-400"
+                    key={job.description}
+                  >
                     {job.description}
                   </p>
                   <button
                     type="button"
-                    class="text-white mt-4 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                    className="text-white mt-4 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                   >
-                    <i class="fa-solid fa-plus pr-4"></i>
+                    <i className="fa-solid fa-plus pr-4"></i>
                     Read More
                   </button>
                 </div>
