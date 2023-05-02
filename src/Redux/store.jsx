@@ -5,6 +5,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import { loadjobReducer } from "./Reducer/jobReducer";
 import { loadJobTypeReducer } from "./Reducer/jobTypeReducer";
 import { userReducerSignIn } from "./Reducer/userReducer";
+import { userReducerLogout } from "./Reducer/userReducer";
 
 //combine reducers
 
@@ -12,10 +13,17 @@ const reducer = combineReducers({
   loadJobs: loadjobReducer,
   jobTypeAll: loadJobTypeReducer,
   signIn: userReducerSignIn,
+  logOut: userReducerLogout,
 });
 
 //initial state
-let initialState = {};
+let initialState = {
+  signIn: {
+    userInfo: localStorage.getItem("userInfo")
+      ? JSON.parse(localStorage.getItem("userInfo"))
+      : null,
+  },
+};
 const middleware = [thunk];
 const store = configureStore({
   reducer,

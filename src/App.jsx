@@ -8,12 +8,18 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from "./Components/Navbar";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import LoginForm from "./Pages/Login";
+import Dashboard from "./Pages/User/UserDashboard";
+import UserRoutes from "./Components/UserRoutes";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <>
+      <ToastContainer />
       <BrowserRouter>
         <Navbar />
         {/* <Header /> */}
@@ -22,6 +28,15 @@ function App() {
           <Route path="/search/location/:location" element={<Home />} />
           <Route path="/search/:keyword" element={<Home />} />
           <Route path="*" element={<NotFound />} />
+          <Route
+            path="/user/dashboard"
+            element={
+              <UserRoutes>
+                <Dashboard />
+              </UserRoutes>
+            }
+          />
+          <Route path="/login" element={<LoginForm />} />
         </Routes>
         <Footer />
       </BrowserRouter>
