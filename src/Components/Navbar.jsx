@@ -4,10 +4,11 @@ import { useFormik } from "formik";
 import { Dropdown } from "flowbite";
 import { Avatar } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { userLogOutAction } from "../Redux/actions/userAction";
 
 const Navbar = () => {
+  const { userInfo } = useSelector((state) => state.signIn);
   const dispatch = useDispatch();
   const nav = useNavigate();
   const [theme, setTheme] = useState(
@@ -174,38 +175,40 @@ const Navbar = () => {
               <li>
                 <a
                   href="#"
-                  className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
+                  className="block py-2 pl-3 pr-4 text-white bg-black rounded md:bg-transparent  md:p-0 md:dark:text-blue-500 md:hover:text-black"
                   aria-current="page"
                 >
                   Home
                 </a>
               </li>
-              <li>
-                <a
-                  href="/login"
-                  className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                >
-                  Login
-                </a>
-              </li>
-
-              <li>
-                <a
-                  href="#"
-                  className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                >
-                  SignUp
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  onClick={logOutUser}
-                  className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                >
-                  LogOut
-                </a>
-              </li>
+              {!userInfo ? (
+                <li className="flex">
+                  <a
+                    href="/login"
+                    className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                  >
+                    Login
+                  </a>
+                  <div className="ml-3">
+                    <a
+                      href="/login"
+                      className="block py-2  text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                    >
+                      SignUp
+                    </a>
+                  </div>
+                </li>
+              ) : (
+                <li>
+                  <a
+                    href="#"
+                    onClick={logOutUser}
+                    className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                  >
+                    LogOut
+                  </a>
+                </li>
+              )}
               <div className="icons cursor-pointer text-white bg-blue-700 rounded md:bg-transparent md:text-white md:p-0 dark:text-white">
                 {theme === "dark" ? (
                   <div className="icon" onClick={handleTheme}>

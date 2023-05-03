@@ -13,7 +13,9 @@ const LoginForm = () => {
   const nav = useNavigate();
   const { isAuthenticated, isLoading } = useSelector((state) => state.signIn);
   useEffect(() => {
-    nav("/user/dashboard");
+    if (isAuthenticated) {
+      nav("/user/dashboard");
+    }
   }, [isAuthenticated]);
 
   const formik = useFormik({
