@@ -62,10 +62,20 @@ export const userLogOutAction = () => async (dispatch) => {
     console.error(error);
   }
 };
-export const userProfileAction = () => async (dispatch) => {
+
+export const userProfileAction = (user) => async (dispatch) => {
   dispatch({ type: USER_LOAD_REQUEST });
   try {
-    const { data } = await axios.get("/api/me");
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const { data } = await axios.get(
+      "http://localhost:9000/api/Profile",
+      config
+    );
+
     dispatch({
       type: USER_LOAD_SUCCESS,
       payload: data,
@@ -73,7 +83,47 @@ export const userProfileAction = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: USER_LOAD_FAIL,
-      payload: error.response.data.error,
+      payload: error.response,
     });
   }
 };
+// export const userProfileAction = () => async (dispatch, getState) => {
+//   try {
+//     dispatch({ type: USER_LOAD_REQUEST });
+
+//     const { userLogin } = getState();
+
+//     if (!userLogin) {
+//       throw new Error("User not logged in");
+//     }
+
+//     const {
+//       userInfo: { token },
+//     } = userLogin;
+
+//     const config = {
+//       headers: {
+//         Authorization: `Bearer ${token}`,
+//       },
+//     };
+
+//     const { data } = await axios.get(
+//       "http://localhost:9000/api/Profile",
+//       config
+//     );
+
+//     dispatch({
+//       type: USER_LOAD_SUCCESS,
+//       payload: { user: data },
+//     });
+//   } catch (error) {
+//     console.log(error);
+//     dispatch({
+//       type: USER_LOAD_FAIL,
+//       payload:
+//         error.response && error.response.data.message
+//           ? error.response.data.message
+//           : error.message,
+//     });
+//   }
+// };

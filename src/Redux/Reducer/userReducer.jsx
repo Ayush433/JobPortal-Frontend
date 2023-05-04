@@ -10,6 +10,7 @@ import {
   USER_LOAD_FAIL,
   USER_LOAD_REQUEST,
   USER_LOAD_SUCCESS,
+  USER_LOAD_RESET,
 } from "../Constants/userConstants";
 
 export const userReducerSignIn = (state = {}, action) => {
@@ -60,19 +61,22 @@ export const userReducerLogout = (state = {}, action) => {
       return state;
   }
 };
-export const userReducerProfile = (state = { user: null }, action) => {
+export const userReducerProfile = (
+  state = { loading: false, userInfo: null },
+  action
+) => {
   switch (action.type) {
     case USER_LOAD_REQUEST:
-      return { loading: true, user: null };
+      return { loading: true, userInfo: null };
     case USER_LOAD_SUCCESS:
       return {
         loading: false,
-        user: action.payload.user,
+        userInfo: action.payload.user,
       };
     case USER_LOAD_FAIL:
-      return { loading: false, user: null, error: action.payload };
+      return { loading: false, userInfo: null, error: action.payload };
     case USER_LOAD_RESET:
-      return {};
+      return { userInfo: null };
     default:
       return state;
   }
