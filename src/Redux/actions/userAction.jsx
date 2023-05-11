@@ -66,9 +66,10 @@ export const userLogOutAction = () => async (dispatch) => {
 export const userProfileAction = (user) => async (dispatch) => {
   dispatch({ type: USER_LOAD_REQUEST });
   try {
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
     const config = {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${userInfo?.data?.token}`,
       },
     };
     const { data } = await axios.get(

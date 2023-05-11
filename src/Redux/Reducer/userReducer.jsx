@@ -71,7 +71,7 @@ export const userReducerProfile = (
     case USER_LOAD_SUCCESS:
       return {
         loading: false,
-        userInfo: action.payload.user,
+        userInfo: action.payload,
       };
     case USER_LOAD_FAIL:
       return { loading: false, userInfo: null, error: action.payload };

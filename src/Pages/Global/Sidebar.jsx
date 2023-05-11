@@ -27,7 +27,7 @@ import LoginIcon from "@mui/icons-material/Login";
 const SidebarAdm = () => {
   const { userInfo } = useSelector((state) => state.signIn);
   console.log(userInfo);
-  // const { palette } = useTheme();
+
   const { collapsed } = useProSidebar();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -142,7 +142,6 @@ const SidebarAdm = () => {
                     {" "}
                     Dashboard{" "}
                   </MenuItem>
-                  <h1>Bye</h1>
                   <MenuItem
                     component={<Link to="/user/jobs" />}
                     icon={<WorkHistoryIcon />}
