@@ -5,10 +5,6 @@ import { userProfileAction } from "../../Redux/actions/userAction";
 const UserJobsHistory = () => {
   const { userInfo } = useSelector((state) => state.userProfile);
   console.log(userInfo);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(userProfileAction());
-  }, []);
 
   return (
     <>
