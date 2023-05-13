@@ -8,6 +8,9 @@ import {
   USER_LOAD_FAIL,
   USER_LOAD_REQUEST,
   USER_LOAD_SUCCESS,
+  USER_APPLY_JOB_REQUEST,
+  USER_APPLY_JOB_SUCCESS,
+  USER_APPLY_JOB_FAIL,
 } from "../Constants/userConstants";
 import { toast } from "react-toastify";
 import axios from "axios";
@@ -88,6 +91,42 @@ export const userProfileAction = (user) => async (dispatch) => {
     });
   }
 };
+// User Apply Job
+
+export const userApplyJobAction = (job) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: USER_APPLY_JOB_REQUEST });
+
+    // const { userInfo } = getState().signIn;
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo?.data?.token}`,
+      },
+    };
+
+    const { data } = await axios.post(
+      "http://localhost:9000/api/user/jobHistory",
+      job,
+      config
+    );
+
+    dispatch({ type: USER_APPLY_JOB_SUCCESS, payload: data });
+    toast.success("Job Applied Successfully!");
+  } catch (error) {
+    dispatch({
+      type: USER_APPLY_JOB_FAIL,
+      payload:
+        error.response && error.response.data
+          ? error.response.data
+          : error.message,
+    });
+    toast.error("Failed to apply for job. Please try again later.");
+    console.error(error);
+  }
+};
+
 // export const userProfileAction = () => async (dispatch, getState) => {
 //   try {
 //     dispatch({ type: USER_LOAD_REQUEST });

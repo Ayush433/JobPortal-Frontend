@@ -11,6 +11,10 @@ import {
   USER_LOAD_REQUEST,
   USER_LOAD_SUCCESS,
   USER_LOAD_RESET,
+  USER_APPLY_JOB_REQUEST,
+  USER_APPLY_JOB_SUCCESS,
+  USER_APPLY_JOB_FAIL,
+  USER_APPLY_JOB_RESET,
 } from "../Constants/userConstants";
 
 export const userReducerSignIn = (state = {}, action) => {
@@ -77,6 +81,30 @@ export const userReducerProfile = (
       return { loading: false, userInfo: null, error: action.payload };
     case USER_LOAD_RESET:
       return { userInfo: null };
+    default:
+      return state;
+  }
+};
+
+// apply for a jobReducer
+export const userApplyJobReducer = (state = {}, action) => {
+  switch (action.type) {
+    case USER_APPLY_JOB_REQUEST:
+      return {
+        loading: false,
+        userJob: action.payload,
+      };
+    case USER_APPLY_JOB_SUCCESS:
+      return {
+        loading: false,
+        userInfo: action.payload,
+        isAuthenticated: true,
+      };
+    case USER_APPLY_JOB_FAIL:
+      return { loading: false, error: action.payload };
+    case USER_APPLY_JOB_RESET:
+      return {};
+
     default:
       return state;
   }

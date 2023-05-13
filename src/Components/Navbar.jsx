@@ -9,6 +9,7 @@ import { userLogOutAction } from "../Redux/actions/userAction";
 
 const Navbar = () => {
   const { userInfo } = useSelector((state) => state.signIn);
+
   const dispatch = useDispatch();
   const nav = useNavigate();
   const [theme, setTheme] = useState(
@@ -174,7 +175,7 @@ const Navbar = () => {
             >
               <li>
                 <a
-                  href="#"
+                  href="/"
                   className="block py-2 pl-3 pr-4 text-white bg-black rounded md:bg-transparent  md:p-0 md:dark:text-blue-500 md:hover:text-black"
                   aria-current="page"
                 >

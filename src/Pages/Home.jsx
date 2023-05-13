@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { jobLoadAction } from "../Redux/actions/jobAction";
 import { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, NavLink, useParams } from "react-router-dom";
 import {
   Box,
   Card,
@@ -22,6 +22,7 @@ const Home = () => {
   const { jobs, setUniqueLocation, pages, loading } = useSelector(
     (state) => state.loadJobs
   );
+  console.log(jobs);
 
   const dispatch = useDispatch();
 
@@ -71,7 +72,7 @@ const Home = () => {
       {}
       <div className="grid grid-rows-3 gap-4">
         {jobs &&
-          jobs.map((job) => {
+          jobs.map((job, i) => {
             return (
               <div className=" w-[700px] ml-[500px] p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <svg
@@ -90,27 +91,29 @@ const Home = () => {
                 </i>
 
                 <div className="">
-                  <a href="#">
+                  <Link to={`/job/${job._id}`}>
                     <h5
                       className="mb-2 text-xl font-semibold tracking-tight text-gray-900 dark:text-white"
                       key={job.title}
                     >
                       {job.title}
                     </h5>
-                  </a>
+                  </Link>
+
                   <p
                     className="mb-3 font-normal text-gray-500 dark:text-gray-400"
                     key={job.description}
                   >
                     {job.description}
                   </p>
-                  <button
+                  <NavLink
                     type="button"
+                    to=""
                     className="text-white mt-4 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                   >
                     <i className="fa-solid fa-plus pr-4"></i>
                     Read More
-                  </button>
+                  </NavLink>
                 </div>
               </div>
             );

@@ -20,28 +20,34 @@ const UserDashboard = () => {
 
   return (
     <>
-      <div>
-        <h1 className="text-white pb-4 text-2xl">Dashboard</h1>
-      </div>
-      <div className="grid grid-cols-2 gap-10 w-[1000px] h-[190px] ml-[20px] ">
-        <div className=" bg-blue-800  rounded-[20px] p-4">
-          <CalendarMonthTwoToneIcon style={{ fontSize: 40 }} />
-          <div className="mt-[10px] text-white  ">Member Since</div>
-          <div className="text-white  pt-3">
-            {moment(userInfo?.user?.createdAt).format(`YYYY / MM / DD`)}
+      {userInfo?.user?.role === 1 ? (
+        <h1 className="text-white pb-4 text-2xl"> Admin Dashboard</h1>
+      ) : (
+        <>
+          <div>
+            <h1 className="text-white pb-4 text-2xl">Dashboard</h1>
           </div>
-        </div>
+          <div className="grid grid-cols-2 gap-10 w-[1000px] h-[190px] ml-[20px] ">
+            <div className=" bg-blue-800  rounded-[20px] p-4">
+              <CalendarMonthTwoToneIcon style={{ fontSize: 40 }} />
+              <div className="mt-[10px] text-white  ">Member Since</div>
+              <div className="text-white  pt-3">
+                {moment(userInfo?.user?.createdAt).format(`YYYY / MM / DD`)}
+              </div>
+            </div>
 
-        <div className=" bg-blue-800 rounded-[20px] p-4">
-          <WorkOutlineIcon style={{ fontSize: 40 }} />
-          <div className="text-white pt-2 text-xl">
-            {userInfo?.user?.jobHistory.length}
+            <div className=" bg-blue-800 rounded-[20px] p-4">
+              <WorkOutlineIcon style={{ fontSize: 40 }} />
+              <div className="text-white pt-2 text-xl">
+                {userInfo?.user?.jobHistory.length}
+              </div>
+              <div className="mt-[10px] text-white ">
+                <h2>No of Jobs Submitted</h2>
+              </div>
+            </div>
           </div>
-          <div className="mt-[10px] text-white ">
-            <h2>No of Jobs Submitted</h2>
-          </div>
-        </div>
-      </div>
+        </>
+      )}
     </>
   );
 };

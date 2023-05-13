@@ -15,6 +15,7 @@ const LoginForm = () => {
   useEffect(() => {
     if (isAuthenticated) {
       nav("/user/dashboard");
+      // nav("/");
     }
   }, [isAuthenticated]);
 

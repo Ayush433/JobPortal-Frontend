@@ -17,6 +17,7 @@ import Layout from "./Pages/Global/Layout";
 import { ProSidebarProvider } from "react-pro-sidebar";
 import UserJobsHistory from "./Pages/User/UserJobsHistory";
 import UserInfoDashboard from "./Pages/User/UserInfoDashboard";
+import SingleJob from "./Pages/SingleJob";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -61,6 +62,7 @@ function App() {
               }
             />
             <Route path="/login" element={<LoginForm />} />
+            <Route path="/job/:id" element={<SingleJob />} />
           </Routes>
           <Footer />
         </BrowserRouter>
