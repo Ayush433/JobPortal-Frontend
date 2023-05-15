@@ -5,10 +5,14 @@ import { Dropdown } from "flowbite";
 import { Avatar } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { userLogOutAction } from "../Redux/actions/userAction";
+import {
+  userLogOutAction,
+  userSignInAction,
+} from "../Redux/actions/userAction";
 
 const Navbar = () => {
   const { userInfo } = useSelector((state) => state.signIn);
+  console.log(userInfo);
 
   const dispatch = useDispatch();
   const nav = useNavigate();
@@ -182,7 +186,7 @@ const Navbar = () => {
                   Home
                 </a>
               </li>
-              {!userInfo ? (
+              {!userInfo?.data ? (
                 <li className="flex">
                   <a
                     href="/login"

@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-// import { useUserLoginMutation } from "../Features/Auth/authApi";
-// import { addUser } from "../Features/Auth/userSlice";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,10 +9,17 @@ import { userSignInAction } from "../Redux/actions/userAction";
 const LoginForm = () => {
   const dispatch = useDispatch();
   const nav = useNavigate();
-  const { isAuthenticated, isLoading } = useSelector((state) => state.signIn);
+  const { isAuthenticated, isLoading, userInfo } = useSelector(
+    (state) => state.signIn
+  );
   useEffect(() => {
     if (isAuthenticated) {
-      nav("/user/dashboard");
+      if (userInfo.data.role === 1) {
+        nav("/admin/dashboard");
+      } else {
+        nav("/user/dashboard");
+      }
+
       // nav("/");
     }
   }, [isAuthenticated]);

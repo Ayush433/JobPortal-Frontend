@@ -24,6 +24,7 @@ export const userSignInAction = (user) => async (dispatch) => {
       "http://localhost:9000/api/userLogin",
       user
     );
+
     localStorage.setItem("userInfo", JSON.stringify(data));
 
     dispatch({ type: USER_SIGNING_SUCCESS, payload: data });

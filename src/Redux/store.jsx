@@ -1,7 +1,7 @@
 import { createStore, combineReducers } from "redux";
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import thunk from "redux-thunk";
-import { composeWithDevTools } from "redux-devtools-extension";
+
 import { loadjobReducer, loadJobSingleReducer } from "./Reducer/jobReducer";
 import { loadJobTypeReducer } from "./Reducer/jobTypeReducer";
 import {
@@ -35,6 +35,7 @@ let initialState = {
 const middleware = [thunk];
 const store = configureStore({
   reducer,
+  initialState,
   middleware: [...getDefaultMiddleware(), ...middleware],
   devTools: process.env.NODE_ENV !== "production",
 });
