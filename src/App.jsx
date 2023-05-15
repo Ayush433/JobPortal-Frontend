@@ -20,6 +20,7 @@ import UserInfoDashboard from "./Pages/User/UserInfoDashboard";
 import SingleJob from "./Pages/SingleJob";
 import AdminDashboard from "./Pages/Admin/AdminDashboard";
 import AdminRoute from "./Components/AdminRoutes";
+import DashUsers from "./Pages/Admin/DashUsers";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -27,6 +28,7 @@ function App() {
   const UserJobsHistoryHOC = Layout(UserJobsHistory);
   const UserInfoDashboardHOC = Layout(UserInfoDashboard);
   const AdminDashboardHOC = Layout(AdminDashboard);
+  const DashUsersHOC = Layout(DashUsers);
 
   return (
     <>
@@ -69,6 +71,14 @@ function App() {
               element={
                 <AdminRoute>
                   <AdminDashboardHOC />
+                </AdminRoute>
+              }
+            />
+            <Route
+              path="/admin/users"
+              element={
+                <AdminRoute>
+                  <DashUsersHOC />
                 </AdminRoute>
               }
             />

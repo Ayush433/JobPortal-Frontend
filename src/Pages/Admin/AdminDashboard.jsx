@@ -21,7 +21,7 @@ const AdminDashboard = () => {
         <div>
           <h1 className="text-white pb-4 text-2xl"> Admin Dashboard</h1>
         </div>
-        <div className="grid grid-cols-3 gap-10 w-[1060px] h-[170px] ml-[20px] ">
+        <div className="grid grid-cols-3 gap-10 w-[1060px] h-[170px] ml-[20px] cursor-pointer ">
           <div className=" bg-blue-800  rounded-[20px] p-4">
             <SupervisorAccountIcon style={{ fontSize: 40 }} />
             <div className="text-white  pt-3 font-extrabold text-2xl">1780</div>

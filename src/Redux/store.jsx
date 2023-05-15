@@ -5,6 +5,7 @@ import thunk from "redux-thunk";
 import { loadjobReducer, loadJobSingleReducer } from "./Reducer/jobReducer";
 import { loadJobTypeReducer } from "./Reducer/jobTypeReducer";
 import {
+  allUserReducer,
   userApplyJobReducer,
   userReducerProfile,
   userReducerSignIn,
@@ -21,6 +22,7 @@ const reducer = combineReducers({
   userProfile: userReducerProfile,
   singleJob: loadJobSingleReducer,
   applyJob: userApplyJobReducer,
+  allUsers: allUserReducer,
 });
 
 //initial state

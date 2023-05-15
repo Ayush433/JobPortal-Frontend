@@ -11,6 +11,9 @@ import {
   USER_APPLY_JOB_REQUEST,
   USER_APPLY_JOB_SUCCESS,
   USER_APPLY_JOB_FAIL,
+  ALL_USER_LOAD_REQUEST,
+  ALL_USER_LOAD_SUCCESS,
+  ALL_USER_LOAD_FAIL,
 } from "../Constants/userConstants";
 import { toast } from "react-toastify";
 import axios from "axios";
@@ -92,6 +95,34 @@ export const userProfileAction = (user) => async (dispatch) => {
     });
   }
 };
+
+// All User Action
+export const allUserAction = (user) => async (dispatch) => {
+  dispatch({ type: ALL_USER_LOAD_REQUEST });
+  try {
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo?.data?.token}`,
+      },
+    };
+    const { data } = await axios.get(
+      "http://localhost:9000/api/allUsers",
+      config
+    );
+
+    dispatch({
+      type: ALL_USER_LOAD_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: ALL_USER_LOAD_FAIL,
+      payload: error.response,
+    });
+  }
+};
+
 // User Apply Job
 
 export const userApplyJobAction = (job) => async (dispatch, getState) => {
