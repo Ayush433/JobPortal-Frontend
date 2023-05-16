@@ -7,6 +7,7 @@ import { loadJobTypeReducer } from "./Reducer/jobTypeReducer";
 import {
   allUserReducer,
   userApplyJobReducer,
+  userDeleteReducer,
   userReducerProfile,
   userReducerSignIn,
 } from "./Reducer/userReducer";
@@ -23,6 +24,7 @@ const reducer = combineReducers({
   singleJob: loadJobSingleReducer,
   applyJob: userApplyJobReducer,
   allUsers: allUserReducer,
+  deleteUser: userDeleteReducer,
 });
 
 //initial state

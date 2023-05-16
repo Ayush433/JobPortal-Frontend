@@ -21,6 +21,7 @@ import SingleJob from "./Pages/SingleJob";
 import AdminDashboard from "./Pages/Admin/AdminDashboard";
 import AdminRoute from "./Components/AdminRoutes";
 import DashUsers from "./Pages/Admin/DashUsers";
+import DashJobs from "./Pages/Admin/Dashjobs.jsx";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -29,6 +30,7 @@ function App() {
   const UserInfoDashboardHOC = Layout(UserInfoDashboard);
   const AdminDashboardHOC = Layout(AdminDashboard);
   const DashUsersHOC = Layout(DashUsers);
+  const DashJobsHOC = Layout(DashJobs);
 
   return (
     <>
@@ -71,6 +73,14 @@ function App() {
               element={
                 <AdminRoute>
                   <AdminDashboardHOC />
+                </AdminRoute>
+              }
+            />
+            <Route
+              path="/admin/jobs"
+              element={
+                <AdminRoute>
+                  <DashJobsHOC />
                 </AdminRoute>
               }
             />

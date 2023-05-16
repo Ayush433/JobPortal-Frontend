@@ -43,7 +43,10 @@ export const jobLoadSingleAction = (id) => async (dispatch) => {
       throw new Error("Job ID is not defined");
     }
 
-    const { data } = await axios.get(`http://localhost:9000/api/${id}`, config);
+    const { data } = await axios.get(
+      `https://localhost:9000/api/${id}`,
+      config
+    );
 
     dispatch({ type: JOB_LOAD_SINGLE_SUCCESS, payload: data });
   } catch (error) {

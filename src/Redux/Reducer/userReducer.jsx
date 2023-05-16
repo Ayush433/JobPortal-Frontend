@@ -19,6 +19,10 @@ import {
   ALL_USER_LOAD_FAIL,
   ALL_USER_LOAD_RESET,
   ALL_USER_LOAD_SUCCESS,
+  DELETE_USER_REQUEST,
+  DELETE_USER_SUCCESS,
+  DELETE_USER_FAIL,
+  DELETE_USER_RESET,
 } from "../Constants/userConstants";
 
 export const userReducerSignIn = (state = {}, action) => {
@@ -132,6 +136,44 @@ export const allUserReducer = (state = { users: [] }, action) => {
     case ALL_USER_LOAD_RESET:
       return {};
 
+    default:
+      return state;
+  }
+};
+// Delete Users
+// userDeleteReducer.js
+
+const initialState = {
+  loading: false,
+  success: false,
+  error: null,
+};
+
+// userDeleteReducer.js
+
+// userDeleteReducer.js
+
+export const userDeleteReducer = (state = {}, action) => {
+  switch (action.type) {
+    case DELETE_USER_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        userId: action.payload,
+      };
+    case DELETE_USER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        success: true,
+        userId: action.payload, // Store the userId in the state
+      };
+    case DELETE_USER_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
     default:
       return state;
   }

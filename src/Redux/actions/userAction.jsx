@@ -14,6 +14,9 @@ import {
   ALL_USER_LOAD_REQUEST,
   ALL_USER_LOAD_SUCCESS,
   ALL_USER_LOAD_FAIL,
+  DELETE_USER_REQUEST,
+  DELETE_USER_FAIL,
+  DELETE_USER_SUCCESS,
 } from "../Constants/userConstants";
 import { toast } from "react-toastify";
 import axios from "axios";
@@ -158,6 +161,67 @@ export const userApplyJobAction = (job) => async (dispatch, getState) => {
     console.error(error);
   }
 };
+
+// Delete Users
+// deleteUserAction.js
+
+export const deleteUserAction = (userId) => async (dispatch) => {
+  console.log("Delete User Action:", userId);
+  dispatch({ type: DELETE_USER_REQUEST, payload: userId });
+
+  try {
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo?.data?.token}`,
+      },
+    };
+
+    await axios.delete(
+      `http://localhost:9000/api/user/admin/delete/${userId}`,
+      config
+    );
+
+    dispatch({
+      type: DELETE_USER_SUCCESS,
+      payload: userId, // Pass the userId to the reducer
+    });
+  } catch (error) {
+    dispatch({
+      type: DELETE_USER_FAIL,
+      payload: error.response,
+    });
+  }
+};
+
+// export const deleteUserAction = (userId) => async (dispatch) => {
+//   console.log("Delete User Action:", userId);
+//   dispatch({ type: DELETE_USER_REQUEST });
+
+//   try {
+//     const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+//     const config = {
+//       headers: {
+//         Authorization: `Bearer ${userInfo?.data?.token}`,
+//       },
+//     };
+
+//     await axios.delete(
+//       `http://localhost:9000/api/user/admin/delete/${userId}`,
+//       config
+//     );
+
+//     dispatch({
+//       type: DELETE_USER_SUCCESS,
+//       payload: userId, // Pass the userId to the reducer
+//     });
+//   } catch (error) {
+//     dispatch({
+//       type: DELETE_USER_FAIL,
+//       payload: error.response,
+//     });
+//   }
+// };
 
 // export const userProfileAction = () => async (dispatch, getState) => {
 //   try {

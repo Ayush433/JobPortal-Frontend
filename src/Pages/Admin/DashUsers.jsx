@@ -5,7 +5,10 @@ import { Link } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
-import { allUserAction } from "../../redux/actions/userAction";
+import {
+  allUserAction,
+  deleteUserAction,
+} from "../../redux/actions/userAction";
 
 const DashUsers = () => {
   const dispatch = useDispatch();
@@ -15,11 +18,15 @@ const DashUsers = () => {
   }, []);
 
   const { users, loading } = useSelector((state) => state.allUsers);
+
   let data = [];
   data = users !== undefined && users.length > 0 ? users : [];
 
   const deleteUserById = (e, id) => {
     console.log(id);
+    // e.preventDefault();
+
+    dispatch(deleteUserAction(id));
   };
 
   const columns = [
@@ -55,7 +62,7 @@ const DashUsers = () => {
     {
       field: "Actions",
       width: 200,
-      renderCell: (values) => (
+      renderCell: (params) => (
         <Box
           sx={{
             display: "flex",
@@ -66,13 +73,13 @@ const DashUsers = () => {
           <Button variant="contained">
             <Link
               style={{ color: "black", textDecoration: "none" }}
-              to={`/admin/edit/user/${values.row._id}`}
+              to={`/admin/edit/user/${params.row._id}`}
             >
               Edit
             </Link>
           </Button>
           <Button
-            onClick={(e) => deleteUserById(e, values.row._id)}
+            onClick={(e) => deleteUserById(e, params.row._id)}
             variant="contained"
             color="error"
           >
@@ -82,6 +89,18 @@ const DashUsers = () => {
       ),
     },
   ];
+  if (loading) {
+    return (
+      <div className="h-[600px]">
+        <lottie-player
+          src="https://assets6.lottiefiles.com/packages/lf20_octtoqca.json"
+          background="transparent"
+          loop
+          autoplay
+        ></lottie-player>
+      </div>
+    );
+  }
 
   return (
     <>
