@@ -3,7 +3,7 @@ import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import thunk from "redux-thunk";
 
 import { loadjobReducer, loadJobSingleReducer } from "./Reducer/jobReducer";
-import { loadJobTypeReducer } from "./Reducer/jobTypeReducer";
+import { deleteJobReducer, loadJobTypeReducer } from "./Reducer/jobTypeReducer";
 import {
   allUserReducer,
   userApplyJobReducer,
@@ -25,6 +25,7 @@ const reducer = combineReducers({
   applyJob: userApplyJobReducer,
   allUsers: allUserReducer,
   deleteUser: userDeleteReducer,
+  deleteJob: deleteJobReducer,
 });
 
 //initial state

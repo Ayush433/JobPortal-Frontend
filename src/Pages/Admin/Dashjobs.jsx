@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
 import { useDispatch, useSelector } from "react-redux";
 import { jobLoadAction } from "../../redux/actions/jobAction";
+import { deleteJobAction } from "../../Redux/actions/jobTypeAction";
 
 const DashJobs = () => {
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ const DashJobs = () => {
   //delete job by Id
   const deleteJobById = (e, id) => {
     console.log(id);
+    dispatch(deleteJobAction(id));
   };
 
   const columns = [
@@ -45,7 +47,7 @@ const DashJobs = () => {
       field: "user",
       headerName: "User",
       width: 150,
-      valueGetter: (data) => data.row.user,
+      valueGetter: (data) => "J ni huna sakxa",
     },
     {
       field: "available",
