@@ -18,13 +18,14 @@ const DashUsers = () => {
   }, []);
 
   const { users, loading } = useSelector((state) => state.allUsers);
+  const { userId } = useSelector((state) => state.deleteUser);
 
   let data = [];
   data = users !== undefined && users.length > 0 ? users : [];
 
   const deleteUserById = (e, id) => {
     console.log(id);
-    // e.preventDefault();
+    e.preventDefault();
 
     dispatch(deleteUserAction(id));
   };

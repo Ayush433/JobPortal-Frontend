@@ -23,6 +23,7 @@ import {
   DELETE_USER_SUCCESS,
   DELETE_USER_FAIL,
   DELETE_USER_RESET,
+  DELETE_USER_UPDATE_LIST,
 } from "../Constants/userConstants";
 
 export const userReducerSignIn = (state = {}, action) => {
@@ -173,6 +174,11 @@ export const userDeleteReducer = (state = {}, action) => {
         ...state,
         loading: false,
         error: action.payload,
+      };
+    case DELETE_USER_UPDATE_LIST: // New action type to update user list
+      return {
+        ...state,
+        userList: state.userList.filter((user) => user._id !== action.payload),
       };
     default:
       return state;

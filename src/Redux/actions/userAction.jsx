@@ -17,6 +17,7 @@ import {
   DELETE_USER_REQUEST,
   DELETE_USER_FAIL,
   DELETE_USER_SUCCESS,
+  DELETE_USER_UPDATE_LIST,
 } from "../Constants/userConstants";
 import { toast } from "react-toastify";
 import axios from "axios";
@@ -185,6 +186,10 @@ export const deleteUserAction = (userId) => async (dispatch) => {
     dispatch({
       type: DELETE_USER_SUCCESS,
       payload: userId, // Pass the userId to the reducer
+    });
+    dispatch({
+      type: DELETE_USER_UPDATE_LIST,
+      payload: userId, // Pass the userId to update the user list
     });
   } catch (error) {
     dispatch({
