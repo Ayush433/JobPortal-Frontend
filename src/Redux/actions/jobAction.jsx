@@ -5,6 +5,9 @@ import {
   JOB_LOAD_SINGLE_REQUEST,
   JOB_LOAD_SINGLE_SUCCESS,
   JOB_LOAD_SINGLE_FAIL,
+  REGISTER_JOB_REQUEST,
+  REGISTER_JOB_SUCCESS,
+  REGISTER_JOB_FAIL,
 } from "../Constants/jobconstants";
 import axios from "axios";
 
@@ -58,5 +61,35 @@ export const jobLoadSingleAction = (id) => async (dispatch) => {
           : error.message,
     });
     console.error(error);
+  }
+};
+
+// CreateJob
+export const createJobAction = (job) => async (dispatch) => {
+  dispatch({ type: REGISTER_JOB_REQUEST });
+
+  try {
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo?.data?.token}`,
+      },
+    };
+    const { data } = await axios.post(
+      "http://localhost:9000/api/create",
+      job,
+      config
+    );
+    dispatch({
+      type: REGISTER_JOB_SUCCESS,
+      payload: data,
+    });
+    toast.success("Job created successfully");
+  } catch (error) {
+    dispatch({
+      type: REGISTER_JOB_FAIL,
+      payload: error.response.data.error,
+    });
+    toast.error(error.response.data.error);
   }
 };

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Box, Button, Paper, Typography } from "@mui/material";
 import { DataGrid, gridClasses } from "@mui/x-data-grid";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
 import { useDispatch, useSelector } from "react-redux";
 import { jobLoadAction } from "../../redux/actions/jobAction";
@@ -9,12 +9,13 @@ import { deleteJobAction } from "../../Redux/actions/jobTypeAction";
 
 const DashJobs = () => {
   const dispatch = useDispatch();
+  const nav = useNavigate();
 
   useEffect(() => {
     dispatch(jobLoadAction());
   }, []);
 
-  const { jobs, loading } = useSelector((state) => state.loadJobs);
+  const { jobs, loading, deleting } = useSelector((state) => state.loadJobs);
   console.log(jobs);
   let data = [];
   data = jobs !== undefined && jobs.length > 0 ? jobs : [];
@@ -24,6 +25,18 @@ const DashJobs = () => {
     console.log(id);
     dispatch(deleteJobAction(id));
   };
+
+  // useEffect(() => {
+  //   if (deleting) {
+  //     // Job deletion in progress, you can show a loader or perform any other action
+  //   } else {
+  //     // Job deletion completed, update the data after successful deletion
+  //     if (data.length > 0) {
+  //       const updatedData = data.filter((job) => job._id !== deleting);
+  //       data = updatedData;
+  //     }
+  //   }
+  // }, [deleting]);
 
   const columns = [
     {

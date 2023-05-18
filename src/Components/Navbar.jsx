@@ -7,14 +7,18 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   userLogOutAction,
-  userSignInAction,
+  userProfileAction,
 } from "../Redux/actions/userAction";
 
 const Navbar = () => {
-  const { userInfo } = useSelector((state) => state.signIn);
+  // const { userInfo } = useSelector((state) => state.signIn);
+  const { userInfo } = useSelector((state) => state.userProfile);
   console.log(userInfo);
-
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(userProfileAction());
+  }, []);
+
   const nav = useNavigate();
   const [theme, setTheme] = useState(
     localStorage.getItem("mernTheme") ?? "light"
@@ -186,7 +190,7 @@ const Navbar = () => {
                   Home
                 </a>
               </li>
-              {!userInfo?.data ? (
+              {!userInfo ? (
                 <li className="flex">
                   <a
                     href="/login"

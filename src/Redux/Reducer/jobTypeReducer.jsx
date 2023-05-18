@@ -30,6 +30,7 @@ export const loadJobTypeReducer = (state = { jobType: [] }, action) => {
 const initialState = {
   deleting: false,
   error: null,
+  jobs: [],
 };
 
 export const deleteJobReducer = (state = initialState, action) => {
@@ -44,6 +45,7 @@ export const deleteJobReducer = (state = initialState, action) => {
       return {
         ...state,
         deleting: false,
+        jobs: action.payload,
       };
     case DELETE_JOB_FAIL:
       return {

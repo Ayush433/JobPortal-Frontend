@@ -19,9 +19,7 @@ import SelectComponent from "../Components/SelectComponent";
 import { jobTypeLoadAction } from "../Redux/actions/jobTypeAction";
 
 const Home = () => {
-  const { jobs, setUniqueLocation, pages, loading } = useSelector(
-    (state) => state.loadJobs
-  );
+  const { jobs, pages, loading } = useSelector((state) => state.loadJobs);
   // console.log(jobs);
 
   const dispatch = useDispatch();
