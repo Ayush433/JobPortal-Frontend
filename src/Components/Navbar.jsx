@@ -8,16 +8,13 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   userLogOutAction,
   userProfileAction,
+  userSignInAction,
 } from "../Redux/actions/userAction";
 
 const Navbar = () => {
-  // const { userInfo } = useSelector((state) => state.signIn);
-  const { userInfo } = useSelector((state) => state.userProfile);
-  console.log(userInfo);
+  const user = localStorage.getItem("userInfo");
+  console.log(user);
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(userProfileAction());
-  }, []);
 
   const nav = useNavigate();
   const [theme, setTheme] = useState(
@@ -56,7 +53,7 @@ const Navbar = () => {
     window.location.reload(true);
     setTimeout(() => {
       nav("/");
-    }, 500);
+    }, 100);
   };
   return (
     <div>
@@ -190,7 +187,7 @@ const Navbar = () => {
                   Home
                 </a>
               </li>
-              {!userInfo ? (
+              {!user ? (
                 <li className="flex">
                   <a
                     href="/login"

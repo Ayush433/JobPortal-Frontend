@@ -157,7 +157,7 @@ export const userApplyJobAction = (job) => async (dispatch, getState) => {
           ? error.response.data
           : error.message,
     });
-    toast.error("Failed to apply for job. Please try again later.");
+    toast.error("Failed to apply for job.You Must Login First.");
     console.error(error);
   }
 };
