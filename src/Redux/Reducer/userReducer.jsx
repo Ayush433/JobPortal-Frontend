@@ -24,6 +24,10 @@ import {
   DELETE_USER_FAIL,
   DELETE_USER_RESET,
   DELETE_USER_UPDATE_LIST,
+  USER_SIGNUP_REQUEST,
+  USER_SIGNUP_SUCCESS,
+  USER_SIGNUP_FAIL,
+  USER_SIGNUP_RESET,
 } from "../Constants/userConstants";
 
 export const userReducerSignIn = (state = {}, action) => {
@@ -180,6 +184,26 @@ export const userDeleteReducer = (state = {}, action) => {
         ...state,
         userList: state.userList.filter((user) => user._id !== action.payload),
       };
+    default:
+      return state;
+  }
+};
+
+//SignUp
+
+export const userReducerSignUp = (state = {}, action) => {
+  switch (action.type) {
+    case USER_SIGNUP_REQUEST:
+      return { loading: true };
+    case USER_SIGNUP_SUCCESS:
+      return {
+        loading: false,
+        userSignUp: action.payload,
+      };
+    case USER_SIGNUP_FAIL:
+      return { loading: false, error: action.payload };
+    case USER_SIGNUP_RESET:
+      return {};
     default:
       return state;
   }

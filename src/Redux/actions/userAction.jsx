@@ -18,6 +18,9 @@ import {
   DELETE_USER_FAIL,
   DELETE_USER_SUCCESS,
   DELETE_USER_UPDATE_LIST,
+  USER_SIGNUP_REQUEST,
+  USER_SIGNUP_SUCCESS,
+  USER_SIGNUP_FAIL,
 } from "../Constants/userConstants";
 import { toast } from "react-toastify";
 import axios from "axios";
@@ -45,6 +48,28 @@ export const userSignInAction = (user) => async (dispatch) => {
     });
     toast.error("Please Check you Email and Password");
     console.error(error);
+  }
+};
+
+export const userSignUpAction = (user) => async (dispatch) => {
+  dispatch({ type: USER_SIGNUP_REQUEST });
+  try {
+    const { data } = await axios.post(
+      "http://localhost:9000/api/userSignUp",
+      user
+    );
+
+    dispatch({
+      type: USER_SIGNUP_SUCCESS,
+      payload: data,
+    });
+    toast.success("Register Successfully!");
+  } catch (error) {
+    dispatch({
+      type: USER_SIGNUP_FAIL,
+      payload: error.response.data.error,
+    });
+    toast.error(error.response.data.error);
   }
 };
 

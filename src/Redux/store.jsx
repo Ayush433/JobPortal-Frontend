@@ -14,6 +14,7 @@ import {
   userDeleteReducer,
   userReducerProfile,
   userReducerSignIn,
+  userReducerSignUp,
 } from "./Reducer/userReducer";
 import { userReducerLogout } from "./Reducer/userReducer";
 
@@ -31,6 +32,7 @@ const reducer = combineReducers({
   deleteUser: userDeleteReducer,
   deleteJob: deleteJobReducer,
   createJob: createJobReducer,
+  signUp: userReducerSignUp,
 });
 
 //initial state

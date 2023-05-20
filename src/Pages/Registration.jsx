@@ -1,18 +1,23 @@
 import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { userSignUpAction } from "../Redux/actions/userAction";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const RegistrationForm = () => {
+  const dispatch = useDispatch();
+  const nav = useNavigate();
   const formik = useFormik({
     initialValues: {
-      name: "",
+      fullName: "",
       email: "",
       password: "",
       confirmPassword: "",
       role: "",
     },
     validationSchema: Yup.object({
-      name: Yup.string().required("Required"),
+      fullName: Yup.string().required("Required"),
       email: Yup.string().email("Invalid email address").required("Required"),
       password: Yup.string()
         .min(8, "Password must be at least 8 characters")
@@ -22,9 +27,11 @@ const RegistrationForm = () => {
         .required("Required"),
       role: Yup.string().required("Required"),
     }),
-    onSubmit: (values) => {
-      // Handle form submission
+    onSubmit: (values, actions) => {
       console.log(values);
+      dispatch(userSignUpAction(values));
+      actions.resetForm();
+      nav("/login");
     },
   });
 
@@ -46,7 +53,7 @@ const RegistrationForm = () => {
             <input
               type="text"
               id="name"
-              name="name"
+              name="fullName"
               className="w-full px-3 py-2 border border-gray-300 rounded-md"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
