@@ -17,6 +17,7 @@ import Avatar from "@mui/material/Avatar";
 import logoDashboard from "../../Images/hr-logo.png";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import HomeIcon from "@mui/icons-material/Home";
 import {
   userLogOutAction,
   userProfileAction,
@@ -104,6 +105,10 @@ const SidebarAdm = () => {
             >
               {userInfo.data.role === 1 ? (
                 <>
+                  <MenuItem component={<Link to="/" />} icon={<HomeIcon />}>
+                    {" "}
+                    Home{" "}
+                  </MenuItem>
                   <MenuItem
                     component={<Link to="/admin/dashboard" />}
                     icon={<DashboardIcon />}

@@ -23,6 +23,7 @@ const SingleJob = () => {
         description: singleJob && singleJob?.description,
         salary: singleJob && singleJob?.salary,
         location: singleJob && singleJob?.location,
+        role: singleJob && singleJob?.role,
       })
     );
   };

@@ -3,17 +3,13 @@ import { useState, useEffect } from "react";
 import { useFormik } from "formik";
 import { Dropdown } from "flowbite";
 import { Avatar } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  userLogOutAction,
-  userProfileAction,
-  userSignInAction,
-} from "../Redux/actions/userAction";
+import { userLogOutAction } from "../Redux/actions/userAction";
 
 const Navbar = () => {
   const user = localStorage.getItem("userInfo");
-  console.log(user);
+
   const dispatch = useDispatch();
 
   const nav = useNavigate();
@@ -59,16 +55,16 @@ const Navbar = () => {
     <div>
       <nav className="bg-blue-700 border-gray-200 dark:bg-gray-900">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-          <a href="https://flowbite.com/" className="flex items-center">
+          <Link to="#" className="flex items-center">
             <img
               src="https://flowbite.com/docs/images/logo.svg"
               className="h-8 mr-3"
               alt="Flowbite Logo"
             />
-            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white text-white">
               Kaam-Kaaz
             </span>
-          </a>
+          </Link>
           <div className="flex md:order-2">
             <button
               type="button"
@@ -179,40 +175,55 @@ const Navbar = () => {
               style={{ marginLeft: "auto" }}
             >
               <li>
-                <a
-                  href="/"
+                <Link
+                  to="/"
                   className="block py-2 pl-3 pr-4 text-white bg-black rounded md:bg-transparent  md:p-0 md:dark:text-blue-500 md:hover:text-black"
                   aria-current="page"
                 >
                   Home
-                </a>
+                </Link>
               </li>
               {!user ? (
                 <li className="flex">
-                  <a
-                    href="/login"
+                  <Link
+                    to="/login"
                     className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                   >
                     Login
-                  </a>
+                  </Link>
                   <div className="ml-3">
-                    <a
-                      href="/login"
+                    <Link
+                      to="/signUp"
                       className="block py-2  text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                     >
                       SignUp
-                    </a>
+                    </Link>
                   </div>
                 </li>
               ) : (
-                <li>
-                  <a
-                    href="#"
+                <li className="flex">
+                  <Link
+                    to="#"
                     onClick={logOutUser}
                     className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                   >
                     LogOut
-                  </a>
+                  </Link>
+                  {user?.role === 1 ? (
+                    <Link
+                      to="/user/dashboard"
+                      className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 md:ml-3"
+                    >
+                      Admin Dashboard
+                    </Link>
+                  ) : (
+                    <Link
+                      to="/user/dashboard"
+                      className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 md:ml-3"
+                    >
+                      User Dashboard
+                    </Link>
+                  )}
                 </li>
               )}
               <div className="icons cursor-pointer text-white bg-blue-700 rounded md:bg-transparent md:text-white md:p-0 dark:text-white">

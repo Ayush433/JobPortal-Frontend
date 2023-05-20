@@ -7,13 +7,15 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import MenuIcon from "@mui/icons-material/Menu";
-import SearchIcon from "@mui/icons-material/Search";
+import CategoryIcon from "@mui/icons-material/Category";
 //import sidebar hook
 import { useProSidebar } from "react-pro-sidebar";
 import { DarkMode, LightMode } from "@mui/icons-material";
 // import { toggleActionTheme } from '../../redux/actions/themeAction';
 import { useTheme } from "@emotion/react";
 import { useDispatch, useSelector } from "react-redux";
+import { MenuItem } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
