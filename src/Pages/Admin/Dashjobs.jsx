@@ -26,17 +26,17 @@ const DashJobs = () => {
     dispatch(deleteJobAction(id));
   };
 
-  // useEffect(() => {
-  //   if (deleting) {
-  //     // Job deletion in progress, you can show a loader or perform any other action
-  //   } else {
-  //     // Job deletion completed, update the data after successful deletion
-  //     if (data.length > 0) {
-  //       const updatedData = data.filter((job) => job._id !== deleting);
-  //       data = updatedData;
-  //     }
-  //   }
-  // }, [deleting]);
+  useEffect(() => {
+    if (deleting) {
+      // Job deletion in progress, you can show a loader or perform any other action
+    } else {
+      // Job deletion completed, update the data after successful deletion
+      if (data.length > 0) {
+        const updatedData = data.filter((job) => job._id !== deleting);
+        data = updatedData;
+      }
+    }
+  }, [deleting]);
 
   const columns = [
     {

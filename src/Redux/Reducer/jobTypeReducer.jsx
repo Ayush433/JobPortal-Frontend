@@ -6,6 +6,7 @@ import {
   DELETE_JOB_REQUEST,
   DELETE_JOB_SUCCESS,
   DELETE_JOB_FAIL,
+  SET_JOBS,
 } from "../Constants/jobTypeConstants";
 
 export const loadJobTypeReducer = (state = { jobType: [] }, action) => {
@@ -53,6 +54,7 @@ export const deleteJobReducer = (state = initialState, action) => {
         deleting: false,
         error: action.payload,
       };
+
     default:
       return state;
   }

@@ -8,7 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { userLogOutAction } from "../Redux/actions/userAction";
 
 const Navbar = () => {
-  const user = localStorage.getItem("userInfo");
+  const user = JSON.parse(localStorage.getItem("userInfo"));
+  console.log(user);
 
   const dispatch = useDispatch();
 
@@ -209,7 +210,7 @@ const Navbar = () => {
                   >
                     LogOut
                   </Link>
-                  {user?.role === 1 ? (
+                  {user?.data?.role === 1 ? (
                     <Link
                       to="/user/dashboard"
                       className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 md:ml-3"

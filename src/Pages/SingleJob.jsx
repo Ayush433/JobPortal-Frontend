@@ -9,6 +9,8 @@ import { userApplyJobAction } from "../Redux/actions/userAction";
 const SingleJob = () => {
   const dispatch = useDispatch();
   const { singleJob, isLoading } = useSelector((state) => state.singleJob);
+  const { userInfo } = useSelector((state) => state.signIn);
+  console.log(userInfo);
 
   console.log(singleJob);
   const { id } = useParams();
@@ -44,13 +46,15 @@ const SingleJob = () => {
             {singleJob?.description}
           </div>
           <div className="font-bold pt-2 mt-[40px] ml-[600px]">
-            <button
-              type="button"
-              onClick={applyForJob}
-              class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
-              Applied For the Job
-            </button>
+            {userInfo?.data?.role === 0 ? (
+              <button
+                type="button"
+                onClick={applyForJob}
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              >
+                Applied For the Job
+              </button>
+            ) : null}
           </div>
         </div>
       </div>

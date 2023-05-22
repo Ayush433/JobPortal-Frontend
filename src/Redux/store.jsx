@@ -47,7 +47,7 @@ let initialState = {
 const middleware = [thunk];
 const store = configureStore({
   reducer,
-  initialState,
+  // initialState,
   middleware: [...getDefaultMiddleware(), ...middleware],
   devTools: process.env.NODE_ENV !== "production",
 });

@@ -38,10 +38,12 @@ export const deleteJobAction = (jobId) => async (dispatch) => {
       },
     };
     await axios.delete(`http://localhost:9000/jobs/delete/${jobId}`, config);
+    const { jobs } = getState().loadJobs;
+    const updatedData = jobs.filter((job) => job._id !== jobId);
 
     dispatch({
       type: DELETE_JOB_SUCCESS,
-      payload: jobId,
+      payload: updatedData,
     });
   } catch (error) {
     dispatch({
