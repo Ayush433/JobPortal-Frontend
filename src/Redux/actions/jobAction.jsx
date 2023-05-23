@@ -8,6 +8,9 @@ import {
   REGISTER_JOB_REQUEST,
   REGISTER_JOB_SUCCESS,
   REGISTER_JOB_FAIL,
+  UPDATE_JOB_REQUEST,
+  UPDATE_JOB_SUCCESS,
+  UPDATE_JOB_FAIL,
 } from "../Constants/jobconstants";
 import axios from "axios";
 
@@ -88,5 +91,36 @@ export const createJobAction = (job) => async (dispatch) => {
       payload: error.response,
     });
     toast.error(error.response.data.error);
+  }
+};
+// Edit Job
+
+// jobActions.js
+
+export const updateJobAction = (jobId, updatedJob) => async (dispatch) => {
+  try {
+    console.log("Job ID", jobId);
+    dispatch({ type: UPDATE_JOB_REQUEST });
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo?.data?.token}`,
+      },
+    };
+    const { data } = await axios.put(
+      `http://localhost:9000/job/update/${jobId}`,
+      updatedJob,
+      config
+    );
+
+    dispatch({
+      type: UPDATE_JOB_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: UPDATE_JOB_FAIL,
+      payload: error.message,
+    });
   }
 };

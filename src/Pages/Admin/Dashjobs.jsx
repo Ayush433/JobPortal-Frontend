@@ -16,7 +16,7 @@ const DashJobs = () => {
   }, []);
 
   const { jobs, loading, deleting } = useSelector((state) => state.loadJobs);
-  console.log(jobs);
+  // console.log(jobs);
   let data = [];
   data = jobs !== undefined && jobs.length > 0 ? jobs : [];
 

@@ -6,6 +6,7 @@ import {
   createJobReducer,
   loadjobReducer,
   loadJobSingleReducer,
+  updateJobReducer,
 } from "./Reducer/jobReducer";
 import { deleteJobReducer, loadJobTypeReducer } from "./Reducer/jobTypeReducer";
 import {
@@ -33,6 +34,7 @@ const reducer = combineReducers({
   deleteJob: deleteJobReducer,
   createJob: createJobReducer,
   signUp: userReducerSignUp,
+  updateJob: updateJobReducer,
 });
 
 //initial state
@@ -47,7 +49,7 @@ let initialState = {
 const middleware = [thunk];
 const store = configureStore({
   reducer,
-  // initialState,
+  initialState,
   middleware: [...getDefaultMiddleware(), ...middleware],
   devTools: process.env.NODE_ENV !== "production",
 });

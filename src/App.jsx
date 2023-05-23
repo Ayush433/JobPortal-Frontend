@@ -21,6 +21,7 @@ import DashUsers from "./Pages/Admin/DashUsers";
 import DashJobs from "./Pages/Admin/Dashjobs.jsx";
 import CreateJobs from "./Pages/Admin/CreateJobs";
 import Registration from "./Pages/Registration";
+import EditJob from "./Pages/Admin/EditJob";
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function AppContent() {
   const DashUsersHOC = Layout(DashUsers);
   const DashJobsHOC = Layout(DashJobs);
   const CreateJobsHOC = Layout(CreateJobs);
+  const EditJobHOC = Layout(EditJob);
 
   return (
     <>
@@ -104,6 +106,14 @@ function AppContent() {
           element={
             <AdminRoute>
               <DashUsersHOC />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="/admin/edit/job/:id"
+          element={
+            <AdminRoute>
+              <EditJobHOC />
             </AdminRoute>
           }
         />
