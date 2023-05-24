@@ -1,4 +1,4 @@
-import { Box, MenuItem, Typography } from "@mui/material";
+import { Box, colors, MenuItem, Typography } from "@mui/material";
 import React, { useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -49,11 +49,13 @@ const DashCreateJob = () => {
     <>
       <Box
         sx={{
-          height: "100%",
+          height: "200%",
+
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          pt: 4,
+          p: 9,
+          bgcolor: "whitesmoke",
         }}
       >
         <Box
@@ -169,7 +171,12 @@ const DashCreateJob = () => {
                 ))}
             </TextField>
 
-            <Button fullWidth variant="contained" type="submit">
+            <Button
+              sx={{ color: "blue" }}
+              fullWidth
+              variant="contained"
+              type="submit"
+            >
               Create job
             </Button>
           </Box>

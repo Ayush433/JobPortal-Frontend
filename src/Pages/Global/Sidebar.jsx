@@ -140,6 +140,10 @@ const SidebarAdm = () => {
                 </>
               ) : (
                 <>
+                  <MenuItem component={<Link to="/" />} icon={<HomeIcon />}>
+                    {" "}
+                    Find Jobs{" "}
+                  </MenuItem>
                   <MenuItem
                     component={<Link to="/user/dashboard" />}
                     icon={<DashboardIcon />}
@@ -147,6 +151,7 @@ const SidebarAdm = () => {
                     {" "}
                     Dashboard{" "}
                   </MenuItem>
+
                   <MenuItem
                     component={<Link to="/user/jobs" />}
                     icon={<WorkHistoryIcon />}

@@ -46,7 +46,7 @@ const SingleJob = () => {
             {singleJob?.description}
           </div>
           <div className="font-bold pt-2 mt-[40px] ml-[600px]">
-            {userInfo?.data?.role === 0 ? (
+            {!userInfo || userInfo?.data?.role === 0 ? (
               <button
                 type="button"
                 onClick={applyForJob}
