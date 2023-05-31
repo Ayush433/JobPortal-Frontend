@@ -8,7 +8,7 @@ import moment from "moment";
 import {
   allUserAction,
   deleteUserAction,
-} from "../../redux/actions/userAction";
+} from "../../Redux/actions/userAction";
 
 const DashUsers = () => {
   const dispatch = useDispatch();
